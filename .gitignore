@@ -151,3 +151,26 @@ Thumbs.db
 # BPE vocabulary files
 *.bpe
 *.vocab
+
+
+# Notebooks (ignore scratch)
+*.ipynb_checkpoints/
+
+
+# Data & images
+*.jpg
+*.png
+*.jpeg
+flatbug-dataset/
+
+# Outputs
+sam3_output_images/
+gt_masks_output/
+debug_output/
+dilated_metrics/
+
+# Experiments
+BB-experiments/
+
+debug_*.json
+fp_*.json

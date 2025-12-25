@@ -1,0 +1,77 @@
+metrics using IOU of seg masks before dilation:
+======================
+amarathunga2022: TP=533 FP=23 FN=23 Precision=0.9586 Recall=0.9586 F1=0.9586
+gernat2018: TP=1807 FP=417 FN=44 Precision=0.8125 Recall=0.9762 F1=0.8869
+sittinger2023: TP=622 FP=65 FN=99 Precision=0.9054 Recall=0.8627 F1=0.8835
+cao2022: TP=101 FP=527 FN=500 Precision=0.1608 Recall=0.1681 F1=0.1644  >>> needs mask dilation, with dilation it reaches F1 80-90%
+
+>> optim. zwis. recall & precision
+
+NHM-beetles-crops: TP=701 FP=848 FN=39 Precision=0.4526 Recall=0.9473 F1=0.6125 >>> problem of FP due to inconsistencies with GT
+biodiscover-arm: TP=2541 FP=510 FN=2701 Precision=0.8328 Recall=0.4847 F1=0.6128   >>> needs tiling 
+======================
+OVERALL SEGMENTATION EVALUATION
+TP=6305 FP=2390 FN=3406
+Precision=0.7251 Recall=0.6493 F1=0.6851
+======================
+metrics after dilation:
+✅ Best dilation for amarathunga2022: 8, F1=0.9604
+Dilation 15: TP=534, FP=22, FN=22, Precision=0.9604, Recall=0.9604, F1=0.9604
+======================
+metrics with pyramid tiling: with dilation 8 px
+Mothitor:           TP=139 FP=218 FN=54             Precision=0.3894 Recall=0.7202 F1=0.5055
+DIRT:               TP=2621 FP=2339 FN=1159         Precision=0.5284 Recall=0.6934 F1=0.5998
+Diopsis:            TP=184 FP=669 FN=287            Precision=0.2157 Recall=0.3907 F1=0.2779
+AMI-traps:          TP=4501 FP=7966 FN=934          Precision=0.3610 Recall=0.8282 F1=0.5028
+AMT:                TP=755 FP=1404 FN=204           Precision=0.3497 Recall=0.7873 F1=0.4843
+PeMaToEuroPep:      TP=3643 FP=9937 FN=6111         Precision=0.2683 Recall=0.3735 F1=0.3122
+anTraX:             TP=2976 FP=2371 FN=1796         Precision=0.5566 Recall=0.6236 F1=0.5882
+biodiscover-arm:    TP=3045 FP=2373 FN=2197         Precision=0.5620 Recall=0.5809 F1=0.5713
+Alus:               TP=6417 FP=2434 FN=519          Precision=0.7250 Recall=0.9252 F1=0.8129
+ArTaxOr:            TP=234 FP=366 FN=985            Precision=0.3900 Recall=0.1920 F1=0.2573
+BIOSCAN:            TP=44 FP=476 FN=457             Precision=0.0846 Recall=0.0878 F1=0.0862
+DiversityScanner:   TP=13 FP=31 FN=518              Precision=0.2955 Recall=0.0245 F1=0.0452
+abram2023:          TP=5944 FP=5304 FN=1921         Precision=0.5284 Recall=0.7558 F1=0.6220
+pinoy2023:          TP=10677 FP=7377 FN=2442        Precision=0.5914 Recall=0.8139 F1=0.6850
+sticky-pi:          TP=21365 FP=21290 FN=11664      Precision=0.5009 Recall=0.6469 F1=0.5646
+ubc-pitfall-traps:  TP=3208 FP=5413 FN=2958         Precision=0.3721 Recall=0.5203 F1=0.4339
+ubc-scanned-sticky-cards: TP=2227 FP=3177 FN=983    Precision=0.4121 Recall=0.6938 F1=0.5171
+CollembolAI:        TP=3289 FP=3501 FN=2612         Precision=0.4844 Recall=0.5574 F1=0.5183
+
+## was done without tiling before 
+ArTaxOr: 
+======================
+
+
+
+
+
+
+
+======================
+Find mean SAM3 score of FP 
+=====
+DATASET                   | FP COUNT   | MEAN SCORE
+------------------------------------------------------------
+amarathunga2022           | 23         | 0.6038
+biodiscover-arm           | 510        | 0.6246
+NHM-beetles-crops         | 848        | 0.7231
+sittinger2023             | 65         | 0.6662
+gernat2018                | 417        | 0.7228
+------------------------------------------------------------
+Global Mean FP Score: 0.6926
+Total FPs: 1863
+------------------------------------------------------------
+
+Analyzing impact of raising Confidence Threshold to: 0.6926
+
+DATASET                   | TOTAL TPs  | LOST TPs   | % LOST    
+-----------------------------------------------------------------
+ArTaxOr                   | 1101       | 81         | 7.4%
+BIOSCAN                   | 494        | 9          | 1.8%
+biodiscover-arm           | 2541       | 1551       | 61.0%
+-----------------------------------------------------------------
+TOTAL TPs FOUND:     4136
+TPs LOST (<= 0.6926): 1641
+GLOBAL LOSS RATE:    39.68%
+

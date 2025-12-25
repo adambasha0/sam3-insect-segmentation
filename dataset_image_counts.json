@@ -1,0 +1,28 @@
+{
+    "counts": {
+        "abram2023": 26,
+        "ALUS": 352,
+        "amarathunga2022": 550,
+        "AMI-traps": 153,
+        "AMT": 110,
+        "anTraX": 212,
+        "ArTaxOr": 1050,
+        "biodiscover-arm": 53,
+        "BIOSCAN": 501,
+        "cao2022": 60,
+        "CollembolAI": 43,
+        "Diopsis": 63,
+        "DIRT": 291,
+        "DiversityScanner": 529,
+        "gernat2018": 38,
+        "Mothitor": 12,
+        "NHM-beetles-crops": 729,
+        "PeMaToEuroPep": 284,
+        "pinoy2023": 76,
+        "sittinger2023": 400,
+        "sticky-pi": 476,
+        "ubc-pitfall-traps": 150,
+        "ubc-scanned-sticky-cards": 50
+    },
+    "total_images": 6208
+}
