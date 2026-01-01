@@ -174,3 +174,5 @@ BB-experiments/
 
 debug_*.json
 fp_*.json
+.env
+.env

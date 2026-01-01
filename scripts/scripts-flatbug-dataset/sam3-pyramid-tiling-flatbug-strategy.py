@@ -1,3 +1,4 @@
+import sys
 import os
 import json
 import torch
@@ -6,8 +7,22 @@ import cv2
 import numpy as np
 import gc
 from PIL import Image, ImageDraw, ImageFont
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+
 from sam3.model_builder import build_sam3_image_model
 from sam3.model.sam3_image_processor import Sam3Processor
+import os
+from dotenv import load_dotenv
+from huggingface_hub import login
+
+# Load the token from .env and login
+load_dotenv()
+token = os.getenv("HF_TOKEN")
+if token:
+    login(token=token)
+else:
+    print("Warning: No HF_TOKEN found in .env file")
 
 # ==========================
 # 1. CONFIGURATION
@@ -21,23 +36,23 @@ ROOT_DATASET = "./flatbug-dataset"
 
 ALLOWED_FOLDERS = {
     "NHM-beetles-crops",
-    "cao2022",
+    #"cao2022",
     "gernat2018",
     "sittinger2023",
     "amarathunga2022",
     "biodiscover-arm",
-    "Mothitor",
+    #"Mothitor",
     "DIRT",
-    "Diopsis",
-    "AMI-traps",
-    "AMT",
+    #"Diopsis",
+    #"AMI-traps",
+    #"AMT",
     "PeMaToEuroPep",
     "abram2023",
     "anTraX",
     "pinoy2023",
     "sticky-pi",
     "ubc-pitfall-traps",
-    "ALUS",
+    #"ALUS",
     "BIOSCAN",
     "DiversityScanner",
     "ArTaxOr",
